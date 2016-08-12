@@ -4,7 +4,20 @@
 	<title>seokjun handsome</title>
 </head>
 <body>
-	<img src="https://pbs.twimg.com/profile_images/581373214028234753/Srm7Rd5M.jpg">
-	<p>chino</p>
+	{% load static %}		
+	<div>
+		<h1>Is order the rabbit?</h1>
+		<p>
+			<img src = "{% static 'gochiusa/all.png' %}"/>
+		</p>
+	</div>
+	
+	<p>
+		<h1>Character</h1>
+	</p>
+	
+	{% for character in characters %}
+		<p><a href = "">{{ character.name }}</a></p>
+	{% endfor %}
 </body>
 </html>
