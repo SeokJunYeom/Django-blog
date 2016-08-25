@@ -4,6 +4,6 @@ from .models import Post
 
 # Create your views here.
 
-def post_list(request):
+def gochiusa(request):
     posts = Post.objects.all()
-    return render(request, 'blog/post_list.html', {'characters' : posts})
+    return render(request, 'gochiusa.html', {'characters' : posts})
