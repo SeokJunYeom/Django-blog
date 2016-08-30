@@ -8,6 +8,6 @@ def gochiusa(request):
     characters = Character.objects.all()
     return render(request, 'gochiusa.html', {'characters' : characters})
 
-def chino(request):
-    chino = Character.objects.get(name = 'chino')
-    return render(request, 'chino.html', {'chino' : chino})
+def character(request, name):
+    character = Character.objects.get(name = name)
+    return render(request, 'character.html', {'character' : character})
