@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'Test',
     'materialize',
 )
 
@@ -69,6 +70,10 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_DIRS = (
+    'd:\Users\PC81\Desktop\PROJECT\Django\unifox\project\Test\templates',
+)
 
 WSGI_APPLICATION = 'unifox.wsgi.application'
 

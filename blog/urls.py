@@ -3,6 +3,5 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', views.gochiusa, name = 'gochiusa'),
-        url(r'(?P<name>\w+)/$', views.character, name = 'character'),
-        url(r'^test$', views.test, name = 'test'),
+        url(r'(?P<name>\w+)/', views.character, name = 'character'),
 ]

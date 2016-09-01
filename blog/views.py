@@ -11,6 +11,3 @@ def gochiusa(request):
 def character(request, name):
     character = Character.objects.get(name = name)
     return render(request, 'character.html', {'character' : character})
-
-def test(request):
-    return render(request, 'test.html', {})
