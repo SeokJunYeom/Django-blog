@@ -3,35 +3,48 @@
 <head>
 	{% load static %}
 	<title>{{ character.name }}</title>
-	<link type="text/css" rel="stylesheet" href="{% static 'materialize.css' %}" 
+	<link type="text/css" rel="stylesheet" href="{% static 'materialize.css' %}"/>
+
+	<style>
+		body
+		{
+			background-image: url("{% static 'gochiusa/background.jpg' %}");
+		}
+	</style>
 </head>
 
 <body>
-	<div class = "container">
+	<div class = "valign-wrapper">
 		<div class = "row">
-			<img src = "/{{ character.image }}">
-		</div>
+			<div class = "col s12">
+				<div class = "card z-depth-3">
+					<div class = "card-image">
+						<img src = "/{{ character.image }}">
+					</div>
 
-		<div class = "row">
-			<table>
-				<thead>
-					<tr>
-						<th>이름</th>
-						<th>생일</th>
-						<th>키</th>
-						<th>혈액형</th>
-					</tr>
-				</thead>
+					<div class = "card-content">
+						<table>
+							<thead>
+								<tr>
+									<th>이름</th>
+									<th>생일</th>
+									<th>키</th>
+									<th>혈액형</th>
+								</tr>
+							</thead>
 
-				<tbody>
-					<tr>
-						<td>{{ character.name }}</td>
-						<td>{{ character.birth }}</td>
-						<td>{{ character.stature }}</td>
-						<td>{{ character.blood_type }}</td>
-					</tr>
-				</tbody>
-			</table>
+							<tbody>
+								<tr>
+									<td>{{ character.name }}</td>
+									<td>{{ character.birth }}</td>
+									<td>{{ character.stature }}</td>
+									<td>{{ character.blood_type }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

@@ -2,23 +2,36 @@
 <html>
 <head>
 	{% load static %}
-	<title>seokjun handsome</title>
+	<title>gochiusa</title>
 	<link type="text/css" rel="stylesheet" href="{% static 'materialize.css' %}" media="screen,projection"/>
+
+	<style>
+	body
+	{
+		background-image: url("{% static 'gochiusa/background.jpg' %}");
+	}
+	</style>
 </head>
-<body>		
-	<div>
-		<h1>Is order the rabbit?</h1>
-		<p>
-			<img src = "{% static 'gochiusa/all.png' %}"/>
-		</p>
+
+<body>
+	<div class = "row valign-wrapper">
+		<div class ="col s8">
+			<div class = "card z-depth-3">
+				<div class = "card-image">
+					<img src = "{% static 'gochiusa/all.png' %}"/>
+				</div>
+
+				<div class = "card-content">
+					<h4>Character</h1>
+				</div>
+
+				<div class = "card-action">
+					{% for character in characters %}
+						<a href = "/gochiusa/{{ character.name }}">{{ character.name }}</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
 	</div>
-	
-	<p>
-		<h1>Character</h1>
-	</p>
-	
-	{% for character in characters %}
-		<p><a href = "/gochiusa/{{ character.name }}">{{ character.name }}</a></p>
-	{% endfor %}
 </body>
 </html>
