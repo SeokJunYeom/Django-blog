@@ -1,9 +1,25 @@
 <!doctype html>
 <html>
 <head>
+	{% load static %}
+	<style>
+		body
+		{
+			background-image: url("{% static '404.png' %}");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-position : center bottom;
+		}
+
+		center
+		{
+			font-size: 150px;
+			padding-top : 50px;
+			padding-left: 10px;
+		}
+	</style>
 </head>
 <body>
-	{% load static %}
-	<img src = "{% static '404.png' %}">
+	<center>Not page...</center>
 </body>
 </html>
