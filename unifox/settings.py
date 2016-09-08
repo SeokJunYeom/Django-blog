@@ -71,10 +71,6 @@ TEMPLATES = [
     },
 ]
 
-TEMPLATE_DIRS = (
-    'd:\Users\PC81\Desktop\PROJECT\Django\unifox\project\handler\templates',
-)
-
 WSGI_APPLICATION = 'unifox.wsgi.application'
 
 
