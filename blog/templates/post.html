@@ -4,11 +4,12 @@
 	{% load static %}
 	<title>post</title>
 	<link type = "text/css" rel = "stylesheet" href = "{% static 'materialize.css' %}" media = "screen,projection"/>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel = "stylesheet">
 </head>
 <body>
 	<div class = "row">
-		<form action = "#" class = "col s12">
+		<form action = "#" class = "col s12" method = "post">
+			{% csrf_token %}
 			<div class = "row">
 				<div class = "input-field col s2">
 					<input id = "name" type = "text" langth = "20" />
@@ -31,12 +32,12 @@
 
 				<div class = "input-field col s3">
 					<select>
+						<option value = "" disabled selected>choose blood type</option>
 						<option value = "1">A</option>
 						<option value = "2">B</option>
 						<option value = "3">O</option>
 						<option value = "4">AB</option>
 					</select>
-					<label>choose blood type</label>
 				</div>
 			</div>
 
@@ -56,8 +57,8 @@
 			</div>
 
 			<div class = "row">
-				<button class="btn waves-effect waves-light" type="submit" name="action">Submit
-    				<i class="material-icons right">send</i>
+				<button class = "btn waves-effect waves-light" type = "submit" name = "action">Submit
+    				<i class = "material-icons right">send</i>
 				</button>
 			</div>
 		</form>
@@ -65,5 +66,20 @@
 
 	<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.js"></script>
     <script type = "text/javascript" src = "{% static 'materialize.js' %}"></script>
+
+    <script>
+		$(document).ready(function() {
+			$('select').material_select();
+		});
+
+		$(document).ready(function() {
+    		$('input#name').characterCounter();
+		});
+
+		$('.datepicker').pickadate({
+    		selectMonths: true,
+    		selectYears: 16
+		});
+    </script>
 </body>
 </html>
