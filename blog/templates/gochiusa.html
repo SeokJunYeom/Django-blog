@@ -15,8 +15,8 @@
 </head>
 
 <body>
-	<div class = "row valign-wrapper">
-		<div class ="col s8">
+	<div class = "row">
+		<div class ="col s8 push-s2">
 			<div class = "card z-depth-3">
 				<div class = "card-image">
 					<img src = "{% static 'gochiusa/all.png' %}"/>
@@ -31,7 +31,7 @@
 						<a href = "/gochiusa/{{ character.name }}">{{ character.name }}</a>
 					{% endfor %}
 
-					<a href = "/gochiusa/post">
+					<a href = "/gochiusa/post/">
 						<span class = "badge"><i class = "material-icons">add</i></span>
 					</a>
 				</div>
