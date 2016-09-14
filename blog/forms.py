@@ -1,4 +1,7 @@
-from django import forms
+from django.forms import ModelForm
+from .models import Character
 
-class Character(forms.Form):
-    pass
+class CharacterForm(ModelForm):
+	class Meta:
+		model = Character
+		fields = [ 'id' , 'image', 'name', 'birth', 'stature', 'blood_type']

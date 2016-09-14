@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.utils import timezone
+from django.http import HttpResponseRedirect
 from .models import Character
+from .forms import CharacterForm
 
 # Create your views here.
 
@@ -13,4 +15,14 @@ def character(request, name):
     return render(request, 'character.html', {'character' : character})
 
 def character_post(request):
-    return render(request, 'post.html', {})
+    if request.method == 'POST':
+    	form = CharacterForm(request.POST)
+
+    	if form.is_valid():
+    		form.save()
+    		return HttpResponseRedirect('/')
+
+    else:
+    	form = CharacterForm()
+
+    return render(request, 'post.html', {'form' : form})
