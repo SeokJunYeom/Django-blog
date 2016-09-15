@@ -16,13 +16,13 @@ def character(request, name):
 
 def character_post(request):
     if request.method == 'POST':
-    	form = CharacterForm(request.POST)
+    	form = CharacterForm(request.POST, request.FILES)
 
     	if form.is_valid():
     		form.save()
-    		return HttpResponseRedirect('/')
+    		return HttpResponseRedirect('../')
 
     else:
     	form = CharacterForm()
 
-    return render(request, 'post.html', {'form' : form})
+    return render(request, 'test.html', {'form' : form})
