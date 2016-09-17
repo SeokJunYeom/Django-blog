@@ -31,12 +31,37 @@
 						<a href = "/gochiusa/{{ character.name }}/">{{ character.name }}</a>
 					{% endfor %}
 
-					<a href = "/gochiusa/post/">
-						<span class = "badge"><i class = "material-icons">add</i></span>
-					</a>
+					<span class = "badge">
+						<a href = "/gochiusa/post/"><i class = "material-icons">add</i></a>
+						<a href = "" class = "dropdown-button" data-activates = "dropdown"><i class = "material-icons">delete</i></a>
+
+						<ul id = "dropdown" class = "dropdown-content">
+							{% for character in characters %}
+								<li><a href = "#!">{{ character.name }}</a></li>
+							{% endfor %}
+						</ul>
+					</span>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script type = "text/javascript" src = "{% static 'materialize.js' %}"></script>
+
+	<script>
+		$('.dropdown-button').dropdown({
+				inDuration: 300,
+				outDuration: 225,
+				constrain_width: false,
+				hover: true,
+				gutter: 0,
+				belowOrigin: false,
+				alignment: 'left'
+			}
+		);
+		$('.dropdown-button').dropdown('open');
+		$('.dropdown-button').dropdown('close');
+	</script>
 </body>
 </html>
