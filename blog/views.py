@@ -26,3 +26,10 @@ def character_post(request):
     	form = CharacterForm()
 
     return render(request, 'test.html', {'form' : form})
+
+def delete(request, pk):
+    character = Character.objects.filter(pk = pk)
+
+    character.delete()
+
+    return HttpResponseRedirect('../../')
