@@ -7,7 +7,7 @@ from .forms import CharacterForm
 # Create your views here.
 
 def gochiusa(request):
-    characters = Character.objects.all()
+    characters = Character.objects.all().order_by('name')
     return render(request, 'gochiusa.html', {'characters' : characters})
 
 def character(request, name):
