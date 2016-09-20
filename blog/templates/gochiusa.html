@@ -37,7 +37,13 @@
 
 						<ul id = "dropdown" class = "dropdown-content">
 							{% for character in characters %}
-								<li><a href = "#!">{{ character.name }}</a></li>
+								<form method = "post" id = "{{ character.pk }}">
+								{% csrf_token %}
+									<li>
+										<input type = "hidden" value = "{{ character.pk }}" name = "pk"/>
+										<a href = "javascript:;" onclick = "document.getElementById('{{ character.pk }}').submit();">{{ character.name }}</a>
+									</li>
+								</form>
 							{% endfor %}
 						</ul>
 					</span>
@@ -62,6 +68,8 @@
 		);
 		$('.dropdown-button').dropdown('open');
 		$('.dropdown-button').dropdown('close');
+
+		$()
 	</script>
 </body>
 </html>

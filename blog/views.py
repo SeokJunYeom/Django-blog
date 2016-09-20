@@ -7,6 +7,12 @@ from .forms import CharacterForm
 # Create your views here.
 
 def gochiusa(request):
+    if request.method == 'POST':
+        character_pk = request.POST.get("pk")
+        Character.objects.get(pk = character_pk).delete()
+
+        return HttpResponseRedirect('/gochiusa/')
+
     characters = Character.objects.all().order_by('name')
     return render(request, 'gochiusa.html', {'characters' : characters})
 
@@ -26,10 +32,3 @@ def character_post(request):
     	form = CharacterForm()
 
     return render(request, 'test.html', {'form' : form})
-
-def delete(request, pk):
-    character = Character.objects.filter(pk = pk)
-
-    character.delete()
-
-    return HttpResponseRedirect('../../')
