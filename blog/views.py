@@ -3,13 +3,17 @@ from django.utils import timezone
 from django.http import HttpResponseRedirect
 from .models import Character
 from .forms import CharacterForm
+import os
 
 # Create your views here.
 
 def gochiusa(request):
     if request.method == 'POST':
         character_pk = request.POST.get("pk")
-        Character.objects.get(pk = character_pk).delete()
+        character = Character.objects.get(pk = character_pk)
+
+        os.remove("media/" + character.image.name )
+        character.delete()
 
         return HttpResponseRedirect('/gochiusa/')
 
