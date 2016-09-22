@@ -7,6 +7,21 @@ import os
 
 # Create your views here.
 
+month_dic = {
+    "January" : '1',
+    "February" : '2',
+    "March" : '3',
+    "April" : '4',
+    "May" : '5',
+    "June" : '6',
+    "July" : '7',
+    "August" : '8',
+    "September" : '9',
+    "October" : '10',
+    "November" : '11',
+    "December" : '12'
+}
+
 def gochiusa(request):
     if request.method == 'POST':
         character_pk = request.POST.get("pk")
@@ -31,8 +46,4 @@ def character_post(request):
     	if form.is_valid():
     		form.save()
     		return HttpResponseRedirect('../')
-
-    else:
-    	form = CharacterForm()
-
-    return render(request, 'test.html', {'form' : form})
+    return render(request, 'post.html', {})
