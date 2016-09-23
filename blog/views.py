@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.utils import timezone
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, QueryDict
 from .models import Character
 from .forms import CharacterForm
 import os
@@ -41,9 +41,20 @@ def character(request, name):
 
 def character_post(request):
     if request.method == 'POST':
+        birth = request.POST.get("birth").split(',')[0]
+        request.POST = request.POST.copy()
+        request.POST["birth"] = stdBirth(birth)
+
     	form = CharacterForm(request.POST, request.FILES)
 
     	if form.is_valid():
     		form.save()
     		return HttpResponseRedirect('../')
+
     return render(request, 'post.html', {})
+
+def stdBirth(birth):
+    month = month_dic[birth.split(' ')[1]]
+    day = birth.split(' ')[0]
+
+    return month + '/' + day
