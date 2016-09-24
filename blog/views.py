@@ -23,24 +23,24 @@ month_dic = {
 }
 
 def gochiusa(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         character_pk = request.POST.get("pk")
         character = Character.objects.get(pk = character_pk)
 
         os.remove("media/" + character.image.name )
         character.delete()
 
-        return HttpResponseRedirect('/gochiusa/')
+        return HttpResponseRedirect("/gochiusa/")
 
-    characters = Character.objects.all().order_by('name')
-    return render(request, 'gochiusa.html', {'characters' : characters})
+    characters = Character.objects.all().order_by("name")
+    return render(request, "gochiusa.html", {"characters" : characters})
 
 def character(request, name):
     character = Character.objects.get(name = name)
-    return render(request, 'character.html', {'character' : character})
+    return render(request, "character.html", {"character" : character})
 
 def character_post(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         birth = request.POST.get("birth").split(',')[0]
         request.POST = request.POST.copy()
         request.POST["birth"] = stdBirth(birth)
@@ -49,7 +49,7 @@ def character_post(request):
 
     	if form.is_valid():
     		form.save()
-    		return HttpResponseRedirect('../')
+    		return HttpResponseRedirect("../")
 
     return render(request, 'post.html', {})
 
