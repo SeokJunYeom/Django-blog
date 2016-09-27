@@ -1,0 +1,3 @@
+1. find "TECHNICAL_404_TEMPLATE(variable)" in django\views\debug.py
+2. TECHNICAL_404_TEMPLATE has html to be composed of string
+3. change original html string to custom html string

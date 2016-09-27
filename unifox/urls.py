@@ -10,5 +10,4 @@ urlpatterns = [
     url(r'^gochiusa/', include('blog.urls')),
     url(r'^favicon\.ico$', RedirectView.as_view(url = '/static/favicon.ico')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,}),
-    url(r'', handler.views.custom_404, name = '404'),
 ]
