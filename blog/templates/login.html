@@ -7,56 +7,78 @@
 	<link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel = "stylesheet">
 
 	<style>
-	body
-	{
-		background-image: url("{% static 'gochiusa/background.jpg' %}");
-	}
+		body {
+			background-image: url("{% static 'gochiusa/background.jpg' %}");
+		}
+
+		#center {
+			position: absolute;
+			top:50%;
+			left:50%;
+			margin:-200px 0 0 -210px;
+		}
+
+		.flex-container {
+			background: rgba(255, 255, 255, 0.6);
+
+			position: absolute
+			top: 0; right: 0; bottom: 0; left: 0;
+
+	  		display: flex;
+			justify-content: center;
+			flex-direction: column;
+
+			display: -webkit-flex;
+			-webkit-flex-direction: column;
+			-webkit-justify-content: center;
+
+	  		width: 400px;
+	  		height: 420px;
+		}
+
+		.flex-item {
+			margin-left: 30px;
+			margin-right: 30px;
+			margin-top: 70px;
+			margin-bottom: 60px;
+		}
+
+		#fail {
+			color: red;
+		}
 	</style>
 </head>
 <body>
-	<div class = "container">
-		<div class = "z-depth-3">
-			{% if form.errors %}
-			<p>ID나 비밀번호가 일치하지 않습니다.</p>
-			{% endif %}
-
-			{% if next %}
-			    {% if user.is_authenticated %}
-			    <p>권한이 없는 페이지에 접근하였으니, 권한이 있는 계정으로 로그인하세요.</p>
-			    {% else %}
-			    <p>이 페이지를 보려면 로그인을 해야 합니다.</p>
-			    {% endif %}
-			{% endif %}
-
-			<form method = "post" action = "{% url 'login' %}" class = "container">
+	<div id = "center">
+		<div class = "flex-container z-depth-3">
+			<form method = "post" action = "{% url 'login' %}">
 				{% csrf_token %}
-				<div class = "row">
+				<div class = "flex-item">
 					<div class = "input-field">
 						<input autofocus = "" id = "id_username" maxlength = "254" name = "username" type = "text" class = "validate" required />
 						<label for = "id_username">ID</label>
 					</div>
 				</div>
 
-				<div class = "row">
+				<div class = "flex-item">
 					<div class = "input-field">
 						<input id = "id_password" name = "password" type = "password" class = "validate" required />
 						<label for = "id_password">Password</label>
 					</div>
 				</div>
 
-				<button class="btn waves-effect waves-light" type="submit" name="action">Submit
-					<i class="material-icons right">send</i>
-				</button>
+				<div class = "flex-item">
+					<button class = "btn waves-effect waves-light" type = "submit" name = "action">login</button>
 
-				<input type = "hidden" name = "next" value = "{{ next }}" />
+					{% if form.errors %}
+						<span id = "fail">&nbsp&nbsp&nbspIncorrect Password</span>
+					{% endif %}
+				</div>
 			</form>
 		</div>
 	</div>
 
 	<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.js"></script>
     <script type = "text/javascript" src = "{% static 'materialize.js' %}"></script>
-
-    <script>
-
 </body>
 </html>
