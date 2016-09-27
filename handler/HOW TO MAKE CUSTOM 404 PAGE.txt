@@ -1,3 +1,6 @@
 1. find "TECHNICAL_404_TEMPLATE(variable)" in django\views\debug.py
 2. TECHNICAL_404_TEMPLATE has html to be composed of string
 3. change original html string to custom html string
+4. if you want insert image in html, you don't have to insert {% load static %} 
+because it raises error "TemplateSyntaxError: 'static' is not a registered tag library. Must be one of:".
+But, image has to be placed in django project's static directory.
