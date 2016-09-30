@@ -3,7 +3,6 @@ from django.contrib import admin
 from django.conf import settings
 from django.views.generic import RedirectView
 from django.views.static import serve
-import handler.views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
