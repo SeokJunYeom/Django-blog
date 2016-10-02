@@ -38,7 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'handler',
+    'gochiusa',
+    'www',
     'materialize',
 )
 
@@ -115,4 +116,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-HOST_MIDDLEWARE_URLCONF_MAP
+HOST_MIDDLEWARE_URLCONF_MAP = {
+    "blog.kafuuchino.moe": "blog.urls",
+    "gochiusa.kafuuchino.moe": "gochiusa.urls",
+    "www.kafuuchino.moe": ROOT_URLCONF,
+}
