@@ -118,6 +118,5 @@ MEDIA_URL = '/media/'
 
 HOST_MIDDLEWARE_URLCONF_MAP = {
     "blog.kafuuchino.moe": "blog.urls",
-    "gochiusa.kafuuchino.moe": "gochiusa.urls",
     "www.kafuuchino.moe": ROOT_URLCONF,
 }
