@@ -1,0 +1,74 @@
+<!Doctype html>
+<html>
+<head>
+	{% load static %}
+	<title>gochiusa</title>
+	<link type = "text/css" rel = "stylesheet" href = "{% static 'materialize.css' %}" media = "screen,projection"/>
+	<link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel = "stylesheet">
+
+	<style>
+		body {
+			background-image: url("{% static 'gochiusa/background.jpg' %}");
+		}
+	</style>
+</head>
+
+<body>
+	<div class = "row">
+		<div class ="col s8 push-s2">
+			<div class = "card z-depth-3">
+				<div class = "card-image">
+					<img src = "{% static 'gochiusa/all.png' %}"/>
+				</div>
+
+				<div class = "card-content">
+					<h4>Character</h4>
+				</div>
+
+				<div class = "card-action">
+					{% for character in characters %}
+						<a href = "/{{ character.name }}/">{{ character.name }}</a>
+					{% endfor %}
+
+					<span class = "badge">
+						<a href = "/post/"><i class = "material-icons">add</i></a>
+						<a href = "" class = "dropdown-button" data-activates = "dropdown"><i class = "material-icons">delete</i></a>
+
+						<ul id = "dropdown" class = "dropdown-content">
+							{% for character in characters %}
+								<form method = "post" id = "{{ character.pk }}">
+								{% csrf_token %}
+									<li>
+										<input type = "hidden" value = "{{ character.pk }}" name = "pk"/>
+										<a href = "javascript:;" onclick = "document.getElementById('{{ character.pk }}').submit();">{{ character.name }}</a>
+									</li>
+								</form>
+							{% endfor %}
+						</ul>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script type = "text/javascript" src = "{% static 'materialize.js' %}"></script>
+
+	<script>
+		$('.dropdown-button').dropdown({
+				inDuration: 300,
+				outDuration: 225,
+				constrain_width: false,
+				hover: true,
+				gutter: 0,
+				belowOrigin: false,
+				alignment: 'left'
+			}
+		);
+		$('.dropdown-button').dropdown('open');
+		$('.dropdown-button').dropdown('close');
+
+		$()
+	</script>
+</body>
+</html>

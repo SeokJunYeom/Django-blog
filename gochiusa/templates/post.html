@@ -1,0 +1,85 @@
+<!Doctype html>
+<html>
+<head>
+	{% load static %}
+	<title>post</title>
+	<link type = "text/css" rel = "stylesheet" href = "{% static 'materialize.css' %}" media = "screen,projection"/>
+	<link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel = "stylesheet">
+</head>
+<body>
+	<div class = "row">
+		<form class = "col s12" method = "post" enctype = "multipart/form-data">
+			{% csrf_token %}
+			<div class = "row">
+				<div class = "input-field col s2">
+					<input id = "id_name" type = "text" length = "20" name = "name" required />
+					<label for = "id_name">name</label>
+				</div>
+			</div>
+
+			<div class = "row">
+				<div class = "range-field col s6">
+					<input id = "id_stature" type = "range" min = "0" max = "200" name = "stature" required />
+					<label for = "id_stature">stature</label>
+				</div>
+			</div>
+
+			<div class = "row">
+				<div class = "col s3">
+					 <input id = "id_birth" type = "date" class = "datepicker" name = "birth" required />
+					 <label for = "id_birth">birth</label>
+				</div>
+
+				<div class = "input-field col s3">
+					<select name = "blood_type" required>
+						<option value = "" disabled selected>choose blood type</option>
+						<option value = "A">A</option>
+						<option value = "B">B</option>
+						<option value = "O">O</option>
+						<option value = "AB">AB</option>
+					</select>
+				</div>
+			</div>
+
+			<div class = "row">
+				<div class = "col s6">
+					<div class = "file-field input-field">
+						<div class = "btn">
+							<span>IMAGE</span>
+							<input type = "file" name = "image" required />
+						</div>
+
+						<div class = "file-path-wrapper">
+							<input class = "file-path validate" type = "text" placeholder = "Upload character's image" name = "image" required />
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class = "row">
+				<button class = "btn waves-effect waves-light" type = "submit">Submit
+    				<i class = "material-icons right">send</i>
+				</button>
+			</div>
+		</form>
+	</div>
+
+	<script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script type = "text/javascript" src = "{% static 'materialize.js' %}"></script>
+
+    <script>
+		$(document).ready(function() {
+			$('select').material_select();
+		});
+
+		$(document).ready(function() {
+    		$('input#id_name').characterCounter();
+		});
+
+		$('.datepicker').pickadate({
+    		selectMonths: true,
+    		selectYears: 16
+		});
+    </script>
+</body>
+</html>
