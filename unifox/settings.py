@@ -120,3 +120,5 @@ HOST_MIDDLEWARE_URLCONF_MAP = {
     "blog.kafuuchino.moe": "blog.urls",
     "www.kafuuchino.moe": ROOT_URLCONF,
 }
+
+LOGIN_REDIRECT_URL = "/"
