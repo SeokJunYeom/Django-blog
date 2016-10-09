@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.utils import timezone
 from django.http import HttpResponseRedirect, QueryDict
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from .models import Character
 from .forms import CharacterForm
 import os
@@ -24,13 +26,17 @@ month_dic = {
 
 def gochiusa(request):
     if request.method == "POST":
-        character_pk = request.POST.get("pk")
-        character = Character.objects.get(pk = character_pk)
+        if not request.user.is_authenticated():
+            return HttpResponseRedirect(settings.LOGIN_URL)
 
-        os.remove("media/" + character.image.name )
-        character.delete()
+        else:
+            character_pk = request.POST.get("pk")
+            character = Character.objects.get(pk = character_pk)
 
-        return HttpResponseRedirect("/")
+            os.remove("media/" + character.image.name )
+            character.delete()
+
+            return HttpResponseRedirect("/")
 
     characters = Character.objects.all().order_by("name")
     return render(request, "gochiusa.html", {"characters" : characters})
@@ -39,6 +45,7 @@ def character(request, name):
     character = Character.objects.get(name = name)
     return render(request, "character.html", {"character" : character})
 
+@login_required
 def character_post(request):
     if request.method == "POST":
         birth = request.POST.get("birth").split(',')[0]
@@ -48,8 +55,10 @@ def character_post(request):
     	form = CharacterForm(request.POST, request.FILES)
 
     	if form.is_valid():
-    		form.save()
-    		return HttpResponseRedirect("../")
+            new_form = form.save(commit = False)
+            new_form.user = request.user
+            new_form.save()
+            return HttpResponseRedirect("../../")
 
     return render(request, 'post.html', {})
 
