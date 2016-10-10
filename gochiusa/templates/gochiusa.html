@@ -30,22 +30,29 @@
 						<a href = "/{{ character.name }}/">{{ character.name }}</a>
 					{% endfor %}
 
-					<span class = "badge">
-						<a href = "/post/"><i class = "material-icons">add</i></a>
-						<a href = "" class = "dropdown-button" data-activates = "dropdown"><i class = "material-icons">delete</i></a>
+					{% if user %}
+						<span class = "badge">
+							<a href = "/post/"><i class = "material-icons">add</i></a>
+							<a href = "javascript:;" class = "dropdown-button" data-activates = "dropdown"><i class = "material-icons">delete</i></a>
 
-						<ul id = "dropdown" class = "dropdown-content">
-							{% for character in characters %}
-								<form method = "post" id = "{{ character.pk }}">
-								{% csrf_token %}
-									<li>
-										<input type = "hidden" value = "{{ character.pk }}" name = "pk"/>
-										<a href = "javascript:;" onclick = "document.getElementById('{{ character.pk }}').submit();">{{ character.name }}</a>
-									</li>
-								</form>
-							{% endfor %}
-						</ul>
-					</span>
+							<ul id = "dropdown" class = "dropdown-content">
+								{% for character in characters %}
+									<form method = "post" id = "{{ character.pk }}">
+									{% csrf_token %}
+										<li>
+											<input type = "hidden" value = "{{ character.pk }}" name = "pk"/>
+											<a href = "javascript:;" onclick = "document.getElementById('{{ character.pk }}').submit();">{{ character.name }}</a>
+										</li>
+									</form>
+								{% endfor %}
+							</ul>
+						</span>
+					{% else %}
+						<span style = "position: absolute; right: 15px">
+							<a href = "javascript:;" onclick = "Materialize.toast('Please login', 4000)"><i class = "material-icons">add</i></a>
+							<a href = "javascript:;" onclick = "Materialize.toast('Please login', 4000)"><i class = "material-icons">delete</i></a>
+						</span>
+					{% endif %}
 				</div>
 			</div>
 		</div>

@@ -38,11 +38,20 @@ def gochiusa(request):
 
             return HttpResponseRedirect("/")
 
+    if not request.user.is_authenticated():
+        user = ""
+
+    else:
+        user = request.user
+
     characters = Character.objects.all().order_by("name")
-    return render(request, "gochiusa.html", {"characters" : characters})
+    context = {"characters" : characters, "user" : user}
+
+    return render(request, "gochius.html", context)
 
 def character(request, name):
     character = Character.objects.get(name = name)
+    
     return render(request, "character.html", {"character" : character})
 
 @login_required
@@ -52,12 +61,13 @@ def character_post(request):
         request.POST = request.POST.copy()
         request.POST["birth"] = stdBirth(birth)
 
-    	form = CharacterForm(request.POST, request.FILES)
+        form = CharacterForm(request.POST, request.FILES)
 
-    	if form.is_valid():
+        if form.is_valid():
             new_form = form.save(commit = False)
             new_form.user = request.user
             new_form.save()
+
             return HttpResponseRedirect("../../")
 
     return render(request, 'post.html', {})
