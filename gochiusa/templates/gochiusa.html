@@ -4,11 +4,15 @@
 	{% load static %}
 	<title>gochiusa</title>
 	<link type = "text/css" rel = "stylesheet" href = "{% static 'materialize.css' %}" media = "screen,projection"/>
-	<link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel = "stylesheet">
 
 	<style>
 		body {
 			background-image: url("{% static 'gochiusa/background.jpg' %}");
+		}
+
+		span {
+			position: absolute;
+			right: 15px;
 		}
 	</style>
 </head>
@@ -31,9 +35,9 @@
 					{% endfor %}
 
 					{% if user %}
-						<span class = "badge">
-							<a href = "/post/"><i class = "material-icons">add</i></a>
-							<a href = "javascript:;" class = "dropdown-button" data-activates = "dropdown"><i class = "material-icons">delete</i></a>
+						<span>
+							<a href = "/post/"><i>add</i></a>
+							<a href = "javascript:;" class = "dropdown-button" data-activates = "dropdown"><i>delete</i></a>
 
 							<ul id = "dropdown" class = "dropdown-content">
 								{% for character in characters %}
@@ -46,11 +50,14 @@
 									</form>
 								{% endfor %}
 							</ul>
+
+							<a href = "/accounts/logout/"><i>logout</i></a>
 						</span>
 					{% else %}
-						<span style = "position: absolute; right: 15px">
-							<a href = "javascript:;" onclick = "Materialize.toast('Please login', 4000)"><i class = "material-icons">add</i></a>
-							<a href = "javascript:;" onclick = "Materialize.toast('Please login', 4000)"><i class = "material-icons">delete</i></a>
+						<span>
+							<a href = "javascript:;" onclick = "Materialize.toast('Please login', 4000)"><i>add</i></a>
+							<a href = "javascript:;" onclick = "Materialize.toast('Please login', 4000)"><i>delete</i></a>
+							<a href = "/accounts/login/"><i>login</i></a>
 						</span>
 					{% endif %}
 				</div>
@@ -79,3 +86,4 @@
 	</script>
 </body>
 </html>
+:
